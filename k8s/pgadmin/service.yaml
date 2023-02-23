@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pgadmin
+  namespace: tp-node
+  labels:
+    app: pgadmin
+spec:
+  ports:
+    - name: "pgadmin"
+      port: 8080
+      targetPort: 80
+  selector:
+    app: pgadmin

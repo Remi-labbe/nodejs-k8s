@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tp-node
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - name: api
+          image: remilab/tp_k8s_node:1.0
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: api_port
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: db_host
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: api
+                  key: db_user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api
+                  key: db_pass
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: db_name
+            - name: DB_DAILECT
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: db_dialect
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: db_port
+            - name: ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api
+                  key: access_token_secret
+            - name: REFRESH_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api
+                  key: refresh_token_secret
+            - name: ACCESS_TOKEN_EXPIRY
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: access_token_expiry
+            - name: REFRESH_TOKEN_EXPIRY
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: refresh_token_expiry
+            - name: REFRESH_TOKEN_COOKIE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: api
+                  key: refresh_token_cookie_name
+          ports:
+            - containerPort: 3000
+          resources: {}

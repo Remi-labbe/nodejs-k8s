@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: tp-node
+  name: api
+data:
+  api_port: "3000"
+  db_host: postgres
+  db_name: tp_db
+  db_dialect: postgres
+  db_port: "5432"
+  access_token_expiry: "42"
+  refresh_token_expiry: "42"
+  refresh_token_cookie_name: "cookie"
