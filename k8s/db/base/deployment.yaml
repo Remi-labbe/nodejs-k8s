@@ -43,5 +43,5 @@ spec:
       volumes:
         - name: postgres-volume
           hostPath:
-            path: /data/postgres
+            path: ""
             type: DirectoryOrCreate

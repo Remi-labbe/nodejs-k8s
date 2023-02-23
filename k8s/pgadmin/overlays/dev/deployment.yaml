@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: tp-node
+  name: pgadmin
+  labels:
+    app: pgadmin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      volumes:
+        - name: pgadmin-volume
+          hostPath:
+            path: /data/pgadmin
+            type: DirectoryOrCreate

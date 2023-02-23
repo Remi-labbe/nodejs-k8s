@@ -38,5 +38,5 @@ spec:
       volumes:
         - name: pgadmin-volume
           hostPath:
-            path: /data/pgadmin
+            path: ""
             type: DirectoryOrCreate
