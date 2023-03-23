@@ -74,8 +74,8 @@ resource "azurerm_linux_web_app" "lwa" {
     DB_USERNAME               = "${data.azurerm_key_vault_secret.pg-login.value}@${azurerm_postgresql_server.pg-srv.name}"
     DB_PASSWORD               = data.azurerm_key_vault_secret.pg-password.value
     DB_DATABASE               = azurerm_postgresql_database.pg-db.name
-    DB_DAILECT                = "postgres"
-    DB_PORT                   = 5432
+    DB_DAILECT                = var.db_dialect
+    DB_PORT                   = var.db_port
     ACCESS_TOKEN_SECRET       = data.azurerm_key_vault_secret.access-token-secret.value
     REFRESH_TOKEN_SECRET      = data.azurerm_key_vault_secret.refresh-token-secret.value
     ACCESS_TOKEN_EXPIRY       = var.access_token_expiry

@@ -22,3 +22,11 @@ variable "refresh_token_expiry" {
 variable "refresh_token_cookie_name" {
   type = string
 }
+
+variable "db_dialect" {
+  type = string
+}
+
+variable "db_port" {
+  type = number
+}
